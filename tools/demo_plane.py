@@ -44,7 +44,7 @@ del_theta_p=0.8
 #del_theta2=[1.8,1.5,15,10,10,5,2,3]
 del_theta2=[10]
 
-root = 'YM_SAR/'
+root = 'SAR_plane/'
 
 prototxt_airport = root+'models/pascal_voc/ResNet-101/ymsar_end2end/test_airport.prototxt'
 caffemodel_airport = root+'output/ymsar_end2end_ohem/voc_2007_trainval/Airport.caffemodel'
@@ -115,7 +115,7 @@ def crop_im(crop_size,crop_overlap,im):
 
 def demo_plane(net, im):
     """Detect object classes in an image using pre-computed object proposals."""
-    crop_size=2000 #裁减图像大小
+    crop_size=1500 #裁减图像大小
     crop_overlap=100 #裁减图像的重叠区域
     # ipdb.set_trace()
     if im.shape[0]>crop_size and im.shape[1]>crop_size:
@@ -323,7 +323,7 @@ if __name__ == '__main__':
         im = cv2.imread(im_file)
         timer.toc()
         print ('reading image took {:.3f}s for detection').format(timer.total_time) 
-        ##然后检测机场
+        ##检测机场然后检测飞机
         demo_airport(net2, im, im_name)
         timer.toc()
         print ('Detection took {:.3f}s for detection').format(timer.total_time)
